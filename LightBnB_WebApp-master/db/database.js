@@ -21,7 +21,7 @@ const getUserWithEmail = function (email) {
     `SELECT * FROM users WHERE email = $1;`,
     [email])
   .then((result) => {
-     return Promise.resolve(result.rows);
+     return Promise.resolve(result.rows[0]);
   })
   .catch((err) => {
     console.log(err.message);
@@ -58,7 +58,7 @@ const addUser = function (user) {
     `INSERT INTO users(name,email, password) Values($1,$2,$3) RETURNING *;`,
     [user.name,user.email,user.password])
   .then((result) => {
-     return Promise.resolve(result.rows);
+     return Promise.resolve(result.rows[0]);
   })
   .catch((err) => {
     console.log(err.message);
@@ -74,7 +74,23 @@ const addUser = function (user) {
  */
 const getAllReservations = function (guest_id, limit = 10) {
 
-  
+  return  pool
+  .query(
+    `SELECT reservations.*, title, cost_per_night, avg(rating) as average_rating
+    FROM reservations 
+    JOIN properties ON reservations.property_id = properties.id
+    JOIN property_reviews On property_reviews.property_id = reservations.property_id
+    WHERE reservations.guest_id = $1
+    GROUP BY properties.id, reservations.id 
+    ORDER BY start_date DESC
+    LIMIT $2;`,
+    [guest_id, limit])
+  .then((result) => {
+     return Promise.resolve(result.rows[0]);
+  })
+  .catch((err) => {
+    console.log(err.message);
+  }); 
 };
 
 /// Properties
