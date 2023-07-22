@@ -1,7 +1,4 @@
-const properties = require("./json/properties.json");
-const users = require("./json/users.json");
-/// Users
-
+const pool = require('./access.js');
 /**
  * Get a single user from the database given their email.
  * @param {String} email The email of the user.
@@ -146,8 +143,7 @@ const getAllProperties = function (options, limit = 10) {
  * @return {Promise<{}>} A promise to the property.
  */
 const addProperty = function (property) {
-
-  console.log("i am here");
+  
   const options = [
     property.owner_id,
     property.title,
