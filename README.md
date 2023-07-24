@@ -1,10 +1,10 @@
 # LightBnB
 ##LightBnB is an education version of the AirBnB with less functionality
 ### My Listing Page
-![Homescreen](../LightBnB_WebApp-master/Screenshots/Homescreen.JPG)
+![Homescreen](Screenshots/Homescreen.JPG)
 
 ### Database ERD for the LightBnB
-![ERD](../LightBnB_WebApp-master/Screenshots/LightBnBERD.JPG)
+![ERD](Screenshots/LightBnBERD.JPG)
 
 ## Project Structure
 

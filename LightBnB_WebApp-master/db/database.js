@@ -1,5 +1,5 @@
 //const { db } = require("./access");
-const db = require('./access.js');
+const db = require("./access.js");
 /// Users
 
 /**
@@ -38,7 +38,7 @@ const getUserWithId = function (id) {
  * Add a new user to the database.
  * @param {{name: string, password: string, email: string}} user
  * @return {Promise<{}>} A promise to the user.
- */ 
+ */
 const addUser = function (user) {
   return db
     .query(
